@@ -11,8 +11,9 @@ rm -rf /var/lib/apt/lists/*
 
 # Download and configure QEMU
 WORKDIR "/root"
-RUN git clone https://github.com/qemu/qemu && \ 
-mkdir /root/qemu/build  && cd /root/qemu/build && \
+RUN git clone https://github.com/qemu/qemu 
+RUN cd qemu; git checkout v6.1.1
+RUN mkdir /root/qemu/build  && cd /root/qemu/build && \
 # build and install
 ../configure --target-list=riscv64-softmmu && make -j3 && make install && \
 # clean up the git repo and build artifacts after installed
